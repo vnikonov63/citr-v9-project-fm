@@ -1,37 +1,22 @@
+import { StrictMode, useState } from "react";
 import { createRoot } from "react-dom/client";
-import Pizza from "./Pizza";
+import PizzaOfTheDay from "./pizzaOfTheDay";
+import Order from "./order";
+import Header from "./Header";
+import { CartContext } from "./context";
 
 const App = () => {
+  const cartHook = useState([]);
   return (
-    <>
-      <h1>Padre Gino's</h1>
-      <Pizza
-        name="Pepperoni"
-        description="Classic tomato base, mozzarella, and spicy pepperoni slices."
-        image={"/public/pizzas/pepperoni.webp"}
-      />
-      <Pizza
-        name="Margherita"
-        description="Fresh tomatoes, mozzarella, basil, and a drizzle of olive oil."
-      />
-      <Pizza
-        name="BBQ Chicken"
-        description="Grilled chicken, BBQ sauce, red onions, and smoked gouda."
-      />
-      <Pizza
-        name="Veggie Delight"
-        description="Mushrooms, bell peppers, olives, onions, and mozzarella."
-      />
-      <Pizza
-        name="Hawaiian"
-        description="Sweet pineapple, ham, mozzarella, and tomato sauce."
-        image={"/public/pizzas/hawaiian.webp"}
-      />
-      <Pizza
-        name="Meat Lovers"
-        description="Pepperoni, sausage, bacon, ham, and extra cheese."
-      />
-    </>
+    <StrictMode>
+      <CartContext.Provider value={cartHook}>
+        <div>
+          <Header />
+          <Order />
+          <PizzaOfTheDay />
+        </div>
+      </CartContext.Provider>
+    </StrictMode>
   );
 };
 
